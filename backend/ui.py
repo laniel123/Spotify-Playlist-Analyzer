@@ -90,8 +90,8 @@ def main():
                 try:
                     total_songs, loser_songs, special_messages = analyze_playlist(sp, playlist_link)
 
-                    st.write(f"Detected {radiohead_songs} Radiohead songs out of {total_songs} total songs.")
-                    funny_diagnosis(total_songs, radiohead_songs, special_messages)
+                    st.write(f"Detected {loser_songs} Radiohead songs out of {total_songs} total songs.")
+                    funny_diagnosis(total_songs, loser_songs, special_messages)
 
                 except Exception as e:
                     st.error(f"Error analyzing playlist: {e}")

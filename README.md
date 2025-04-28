@@ -2,9 +2,8 @@
 
 Welcome to the ultimate self-diagnosis tool for Radiohead fans.
 
-This app analyzes your Spotify playlist and tells you — scientifically* — how likely you are to interact with women based on your Radiohead song count.
+This app analyzes your Spotify playlist and jokeingly tells you  how likely you are to interact with women based on your Radiohead song count.
 
-> *("scientifically" = made up but emotionally accurate.)
 
 ---
 

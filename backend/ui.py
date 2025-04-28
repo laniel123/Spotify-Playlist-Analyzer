@@ -1,6 +1,7 @@
 import streamlit as st
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+from classification import tracked_artists
 
 # ========== AUTHENTICATION ==========
 def authenticate_spotify():
@@ -10,7 +11,7 @@ def authenticate_spotify():
     ))
     return sp
 
-# ========== COUNT RADIOHEAD SONGS ==========
+# ========== ANALYZE PLAYLIST ==========
 def analyze_playlist(sp, playlist_link):
     playlist_id = playlist_link.split("/")[-1].split("?")[0]
     results = sp.playlist_tracks(playlist_id)
@@ -22,7 +23,7 @@ def analyze_playlist(sp, playlist_link):
 
     total_songs = len(tracks)
     radiohead_songs = 0
-    special_songs_found = []
+    special_messages = []
 
     for item in tracks:
         track = item['track']
@@ -30,54 +31,48 @@ def analyze_playlist(sp, playlist_link):
             track_name = track['name'].lower()
             artists = [artist['name'].lower() for artist in track['artists']]
 
-            if "radiohead" in artists:
-                radiohead_songs += 1
+            for tracked_artist, artist_data in tracked_artists.items():
+                if tracked_artist in artists:
+                    if tracked_artist == "radiohead":
+                        radiohead_songs += 1
 
-            # Special Song Detection
-            if "creep" in track_name and "radiohead" in artists:
-                special_songs_found.append(track_name)
-            if "exit music (for a film)" in track_name and "radiohead" in artists:
-                special_songs_found.append(track_name)
-            if "true love waits" in track_name and "radiohead" in artists:
-                special_songs_found.append(track_name)
+                    for special_song, special_message in artist_data["special_songs"].items():
+                        if special_song in track_name:
+                            special_messages.append(special_message)
 
-    return total_songs, radiohead_songs, special_songs_found
+    return total_songs, radiohead_songs, special_messages
 
-# ========== FUNNY DIAGNOSIS BASED ON RADIOHEAD SONG COUNT ==========
-def funny_diagnosis(total_songs, radiohead_songs, special_songs_found):
-    lowercase_specials = [song.lower() for song in special_songs_found]
+# ========== FUNNY DIAGNOSIS ==========
+def funny_diagnosis(total_songs, radiohead_songs, special_messages):
+    st.subheader("Special Songs Detected")
+    if special_messages:
+        for message in special_messages:
+            st.write(f"- {message}")
+    else:
+        st.write("No special songs detected. You are safe... for now.")
 
-    if "creep" in lowercase_specials:
-        st.write("\nWe Detected Creep. Therapy is recommended.")
-
-    if "exit music (for a film)" in lowercase_specials:
-        st.write("\nDetected Exit Music (for a Film). Im sorry you are hurting man....")
-
-    if "true love waits" in lowercase_specials:
-        st.write("\nWe Detected True Love Waits. Do you need a hug??")
-        
-    if "true love waits - live in oslo" in lowercase_specials:
-        st.write("\nWe Detected True Love Waits... LIVE IN OSLO??. Do you need a hug?? Like really.. do you need a hug??")
-
-    if not special_songs_found:
-        st.write("\nNo special songs detected. You are safe ... for now.")
-
-    # Diagnosis based on TOTAL radiohead songs (NOT talk score)
-
+    st.subheader("So do you?")
+    
     if radiohead_songs >= 50:
         st.write("\nDiagnosis: You absolutely repell women.")
+        
     elif radiohead_songs >= 40:
         st.write("\nDiagnosis: You havent talked to a woman in years have you??")
+        
     elif radiohead_songs >= 30:
-        st.write("\nDiagnosis: You once made eye contact with a woman... and wrote 3 sad playlists about it.")
+        st.write("\nDiagnosis: You once made eye contact with a woman and still havent forgotten them.")
+        
     elif radiohead_songs >= 20:
-        st.write("\nDiagnosis: You try to talk to women but end up scaring them away... aww.")
+        st.write("\nDiagnosis: You try to talk to women but end up scaring them away... aww :(.")
+        
     elif radiohead_songs >= 10:
-        st.write("\nDiagnosis: You think about texting women, but Radiohead is louder than your hope.")
+        st.write("\nDiagnosis: You think about texting women, but never do. You are a coward.")
+        
     elif radiohead_songs >= 1:
         st.write("\nDiagnosis: You talk to women good job!")
     else:
-        st.write("\nDiagnosis: You're surprisingly well-adjusted. Touch grass maybe?")
+        st.write("\nDiagnosis: You go outside and talk to women. Good Job!")
+
 
 # ========== STREAMLIT UI ==========
 def main():
@@ -87,16 +82,16 @@ def main():
 
     if st.button("Analyze Playlist"):
         if playlist_link:
-            sp = authenticate_spotify()
-            try:
-                total_songs, radiohead_songs, special_songs_found = analyze_playlist(sp, playlist_link)
+            with st.spinner("Analyzing playlist..."):
+                sp = authenticate_spotify()
+                try:
+                    total_songs, radiohead_songs, special_messages = analyze_playlist(sp, playlist_link)
 
-                st.write(f"\nDetected {radiohead_songs} Radiohead songs out of {total_songs} total songs.")
-                st.write('-----------------------')
-                funny_diagnosis(total_songs, radiohead_songs, special_songs_found)
+                    st.write(f"Detected {radiohead_songs} Radiohead songs out of {total_songs} total songs.")
+                    funny_diagnosis(total_songs, radiohead_songs, special_messages)
 
-            except Exception as e:
-                st.error(f"Error analyzing playlist: {e}")
+                except Exception as e:
+                    st.error(f"Error analyzing playlist: {e}")
         else:
             st.error("Please paste a playlist link!")
 

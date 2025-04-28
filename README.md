@@ -34,15 +34,15 @@ This app analyzes your Spotify playlist and jokeingly tells you  how likely you 
 
 ---
 
-## ✨ Future Ideas
+## Future Ideas
 
-- Add support for other sad artists (Elliott Smith, The Smiths, etc.)
-- Java based website.
+- Support for other artists (Weezer, Elliott Smith, The Smiths, etc.)
+- Create a Java-based website.
 - Dynamic memes
-- Therapy resources link (optional, but probably needed)
+- Therapy resources link 
 
 ---
 
-## 📜 License
+## License
 
 This project is just for fun. Feel free to fork it, modify it, or stare blankly at it while "How to Disappear Completely" plays.

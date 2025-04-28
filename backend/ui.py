@@ -3,6 +3,11 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from classification import tracked_artists
 
+#To run paste in terminal : cd (backend folder path here)
+# and then streamlit run ui.py
+
+
+
 # ========== AUTHENTICATION ==========
 def authenticate_spotify():
     sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(

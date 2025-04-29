@@ -25,6 +25,8 @@ def analyze_playlist(sp, playlist_link):
 
     total_songs = len(tracks)
     radiohead_songs = 0
+    weezer_songs = 0
+    loser_songs = 0
     special_messages = []
 
     for item in tracks:
@@ -37,15 +39,20 @@ def analyze_playlist(sp, playlist_link):
                 if tracked_artist in artists:
                     if tracked_artist == "radiohead":
                         radiohead_songs += 1
+                        
+                    if tracked_artist == 'weezer':
+                        weezer_songs += 1
 
                     for special_song, special_message in artist_data["special_songs"].items():
                         if special_song in track_name:
                             special_messages.append(special_message)
 
-    return total_songs, radiohead_songs, special_messages
+                    loser_songs = weezer_songs + radiohead_songs
+
+    return total_songs, radiohead_songs, special_messages, weezer_songs, loser_songs
 
 # ========== FUNNY DIAGNOSIS ==========
-def funny_diagnosis(total_songs, radiohead_songs, special_messages):
+def funny_diagnosis(total_songs, radiohead_songs, special_messages, weezer_songs, loser_songs):
     st.subheader("Special Songs Detected")
     if special_messages:
         for message in special_messages:
@@ -55,22 +62,22 @@ def funny_diagnosis(total_songs, radiohead_songs, special_messages):
 
     st.subheader("So do you?")
     
-    if radiohead_songs >= 50:
+    if loser_songs >= 50:
         st.write("\nDiagnosis: You absolutely repell women.")
         
-    elif radiohead_songs >= 40:
+    elif loser_songs >= 40:
         st.write("\nDiagnosis: You havent talked to a woman in years have you??")
         
-    elif radiohead_songs >= 30:
+    elif loser_songs >= 30:
         st.write("\nDiagnosis: You once made eye contact with a woman and still havent forgotten them.")
         
-    elif radiohead_songs >= 20:
+    elif loser_songs >= 20:
         st.write("\nDiagnosis: You try to talk to women but end up scaring them away... aww :(.")
         
-    elif radiohead_songs >= 10:
+    elif loser_songs >= 10:
         st.write("\nDiagnosis: You think about texting women, but never do. You are a coward.")
         
-    elif radiohead_songs >= 1:
+    elif loser_songs >= 1:
         st.write("\nDiagnosis: You talk to women good job!")
     else:
         st.write("\nDiagnosis: You go outside and talk to women. Good Job!")
@@ -87,10 +94,11 @@ def main():
             with st.spinner("Analyzing playlist..."):
                 sp = authenticate_spotify()
                 try:
-                    total_songs, radiohead_songs, special_messages = analyze_playlist(sp, playlist_link)
+                    total_songs, radiohead_songs, special_messages, weezer_songs, loser_songs  = analyze_playlist(sp, playlist_link)
 
-                    st.write(f"Detected {radiohead_songs} Radiohead songs out of {total_songs} total songs.")
-                    funny_diagnosis(total_songs, radiohead_songs, special_messages)
+                    st.write(f" I detected {radiohead_songs} Radiohead songs & {weezer_songs} Weezer songs out of {total_songs} total songs.")
+                    st.write(f"You have {loser_songs} loser songs out of {total_songs} total songs.") 
+                    funny_diagnosis(total_songs, radiohead_songs, special_messages, weezer_songs, loser_songs)
 
                 except Exception as e:
                     st.error(f"Error analyzing playlist: {e}")

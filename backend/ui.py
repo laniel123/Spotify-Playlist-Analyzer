@@ -1,7 +1,7 @@
 import streamlit as st
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
-from classification import tracked_artists
+from classification import tracked_artists, loser_artists
 
 #to run this code,type: cd (file path to backend folder here) and run the command: streamlit run ui.py into the terminal. 
 
@@ -14,6 +14,7 @@ def authenticate_spotify():
     return sp
 
 # ========== ANALYZE PLAYLIST ==========
+
 def analyze_playlist(sp, playlist_link):
     playlist_id = playlist_link.split("/")[-1].split("?")[0]
     results = sp.playlist_tracks(playlist_id)
@@ -38,17 +39,21 @@ def analyze_playlist(sp, playlist_link):
 
             for tracked_artist, artist_data in tracked_artists.items():
                 if tracked_artist in artists:
+                    # Dynamically check if this artist counts toward loser_songs
+                    if tracked_artist in loser_artists:
+                        loser_songs += 1
+
+                    # Keep your special counters like radiohead and weezer
                     if tracked_artist == "radiohead":
                         radiohead_songs += 1
-                        
-                    if tracked_artist == 'weezer':
+
+                    if tracked_artist == "weezer":
                         weezer_songs += 1
 
+                    # Special songs detection
                     for special_song, special_message in artist_data["special_songs"].items():
                         if special_song in track_name:
                             special_messages.append(special_message)
-
-                    loser_songs = weezer_songs + radiohead_songs
 
     return total_songs, radiohead_songs, special_messages, weezer_songs, loser_songs
 
@@ -79,7 +84,7 @@ def funny_diagnosis(total_songs, radiohead_songs, special_messages, weezer_songs
         st.write("\nDiagnosis: You think about texting women, but never do. You are a coward.")
         
     elif loser_songs >= 5:
-        st.write("\nDiagnosis: Hmmmmmmm..... I dunno, you are pushing it pal")
+        st.write("\nDiagnosis: You talk to women but I dunno, you are pushing it pal.")
         
     elif loser_songs == 1:
         st.write("\nDiagnosis: Only one song, ok , you talk to women good job!")

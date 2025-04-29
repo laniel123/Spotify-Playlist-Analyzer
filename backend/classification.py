@@ -1,5 +1,8 @@
 # ========== TRACKED ARTISTS AND SPECIAL SONGS ==========
 
+# Artists who contribute to loser_songs score
+loser_artists = {"radiohead", "weezer"}
+
 tracked_artists = {
     
     # Radiohead

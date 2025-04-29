@@ -104,7 +104,7 @@ def loser_song_diagnosis(loser_song_count):
 
 # --- STREAMLIT UI ---
 def main():
-    st.title("Do You Talk to Women? Playlist Analyzer")
+    st.title("Do You Talk to Women?")
 
     playlist_link = st.text_input("Enter your Spotify playlist link:")
 

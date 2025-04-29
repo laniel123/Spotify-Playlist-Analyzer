@@ -36,11 +36,12 @@ tracked_artists = {
         }
     },
     
-    "clario": {
+    "clairo": {
         "special_songs": {
             "juna": "Boy... put down that matcha and grab you a beer. (You are a loser)",
         }
     }, 
+    
     
 "beabadoobee": {    
     "special_songs": { 

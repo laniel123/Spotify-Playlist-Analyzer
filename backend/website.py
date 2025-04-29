@@ -3,7 +3,7 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from classification import tracked_artists, artist_class
 
-#to run this code,type: cd (file path to backend folder here) and run the command: streamlit run .py into the terminal. 
+#to run this code,type: cd (file path to backend folder here) and run the command: streamlit run website.py into the terminal. 
 
 # ========== AUTHENTICATION ==========
 def authenticate_spotify():
@@ -39,11 +39,11 @@ def analyze_playlist(sp, playlist_link):
 
             for tracked_artist, artist_data in tracked_artists.items():
                 if tracked_artist in artists:
+                    
                     # Dynamically check if this artist counts toward loser_songs
                     if tracked_artist in artist_class:
                         loser_songs += 1
 
-                    # Keep your special counters like radiohead and weezer
                     if tracked_artist == "radiohead":
                         radiohead_songs += 1
 
@@ -59,12 +59,6 @@ def analyze_playlist(sp, playlist_link):
 
 # ========== FUNNY DIAGNOSIS ==========
 def funny_diagnosis(total_songs, radiohead_songs, special_messages, weezer_songs, loser_songs):
-    st.subheader("Special Songs Detected")
-    if special_messages:
-        for message in special_messages:
-            st.write(f"- {message}")
-    else:
-        st.write("No special songs detected. You are safe... for now.")
 
     st.subheader("So do you?")
     
@@ -90,6 +84,13 @@ def funny_diagnosis(total_songs, radiohead_songs, special_messages, weezer_songs
         st.write("\nDiagnosis: Only one song, ok , you talk to women good job!")
     else:
         st.write("\nDiagnosis: 0 songs wow!! You go outside and talk to women!!! Good Job!")
+    
+    st.subheader("Special Songs Detected")
+    if special_messages:
+        for message in special_messages:
+            st.write(f"- {message}")
+    else:
+        st.write("No special songs detected. You are safe... for now.")
 
 
 # ========== STREAMLIT UI ==========

@@ -41,7 +41,7 @@ tracked_artists = {
     # Clairo
     "clairo": {
         "special_songs": {
-            "juno": "Detected Juno: Boy ... put down that matcha and grab you a beer."
+            "juna": "Detected Juna: Clairo....Boy...put down that matcha and grab you a beer."
         }
     }, 
 

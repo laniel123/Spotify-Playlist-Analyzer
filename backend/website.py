@@ -3,7 +3,7 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from classification import tracked_artists, loser_artists
 
-#to run this code,type: cd (file path to backend folder here) and run the command: streamlit run ui.py into the terminal. 
+#to run this code,type: cd (file path to backend folder here) and run the command: streamlit run website.py into the terminal. 
 
 # ========== AUTHENTICATION ==========
 def authenticate_spotify():

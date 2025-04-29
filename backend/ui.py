@@ -31,9 +31,10 @@ def analyze_playlist(sp, playlist_link):
 
     for item in tracks:
         track = item['track']
-        if track is not None:
+        
+        if track is not None and track.get('name') and track.get('artists'):
             track_name = track['name'].lower()
-            artists = [artist['name'].lower() for artist in track['artists']]
+            artists = [artist['name'].lower() for artist in track['artists'] if artist.get('name')]
 
             for tracked_artist, artist_data in tracked_artists.items():
                 if tracked_artist in artists:
@@ -80,8 +81,8 @@ def funny_diagnosis(total_songs, radiohead_songs, special_messages, weezer_songs
     elif loser_songs >= 5:
         st.write("\nDiagnosis: Hmmmmmmm..... I dunno, you are pushing it pal")
         
-    elif loser_songs >= 1:
-        st.write("\nDiagnosis: You talk to women good job!")
+    elif loser_songs == 1:
+        st.write("\nDiagnosis: Only one song, ok , you talk to women good job!")
     else:
         st.write("\nDiagnosis: 0 songs wow!! You go outside and talk to women!!! Good Job!")
 

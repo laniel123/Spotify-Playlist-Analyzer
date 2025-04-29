@@ -13,6 +13,7 @@ def authenticate_spotify():
         client_id="78e6a0058e734633b7a089734a361292",
         client_secret="687d40e1362a463a84ada8b73915a7fa"
     ))
+    
     return sp
 
 # ========== ANALYZE PLAYLIST ==========

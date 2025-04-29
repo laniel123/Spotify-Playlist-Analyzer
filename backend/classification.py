@@ -34,5 +34,23 @@ tracked_artists = {
         "special_songs": {
             "please, please, please let me get what i want": "You will be fine male manipulator."
         }
+    },
+    
+    "clario": {
+        "special_songs": {
+            "juna": "Boy... put down that matcha and grab you a beer. (You are a loser)",
+        }
+    }, 
+    
+"beabadoobee": {    
+    "special_songs": { 
+        "beaches": "Detected 'Beaches'. Why do you really listen to her???"
     }
+}
+
+
+
+
+
+
 }

@@ -77,6 +77,9 @@ def funny_diagnosis(total_songs, radiohead_songs, special_messages, weezer_songs
     elif loser_songs >= 10:
         st.write("\nDiagnosis: You think about texting women, but never do. You are a coward.")
         
+    elif loser_songs >= 5:
+        st.write("\nDiagnosis: Hmmmmmmm..... I dunno")
+        
     elif loser_songs >= 1:
         st.write("\nDiagnosis: You talk to women good job!")
     else:

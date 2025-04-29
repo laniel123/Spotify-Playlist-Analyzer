@@ -64,9 +64,12 @@ client_secret="YOUR_CLIENT_SECRET"
 Run the Streamlit app within the terminal with:
 
 ```bash
-streamlit run yourfile.py
+cd (file path to backend folder here)
 ```
 
+```bash
+streamlit run yourfile.py
+```
 ---
 
 ## Future Ideas

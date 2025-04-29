@@ -3,7 +3,9 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from classification import tracked_artists, artist_class
 
-#to run this code,type: cd (file path to backend folder here) and run the command: streamlit run website.py into the terminal. 
+# To start the website:  
+# Run the command: cd (file path to backend folder here) 
+# Run the command: streamlit run website.py into the terminal. 
 
 # ========== AUTHENTICATION ==========
 def authenticate_spotify():

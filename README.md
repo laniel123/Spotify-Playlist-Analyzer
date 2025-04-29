@@ -11,7 +11,7 @@ This app analyzes your Spotify playlist and jokeingly tells you  how likely you 
 
 - Paste any Spotify playlist
 - Detects how many Radiohead songs you have
-- Special detection for *Creep*, *Exit Music (for a Film)*, and *True Love Waits*
+- Special detection for various songs notable within the band's communities.
 - Gives a humorous diagnosis about your social life
 - Displays different images depending on how doomed you are
 
@@ -31,6 +31,47 @@ This app analyzes your Spotify playlist and jokeingly tells you  how likely you 
 - Python
 - Streamlit
 - Spotipy (Spotify API wrapper)
+
+---
+## Requirements
+
+To run this project locally, follow these steps:
+
+### 1. Install Python Packages
+
+Install the required Python libraries using pip:
+
+```bash
+pip install spotipy streamlit
+```
+
+Or install all dependencies using a `requirements.txt` file (if included):
+
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Set Up Spotify API Access
+
+You will need a Spotify Developer account to access playlist and artist data.
+
+1. Go to https://developer.spotify.com.
+2. Log in and create an app.
+3. Copy your **Client ID** and **Client Secret**.
+4. In the Python code, replace the placeholders:
+
+```python
+client_id="YOUR_CLIENT_ID"
+client_secret="YOUR_CLIENT_SECRET"
+```
+
+### 3. Run the App Locally
+
+Run the Streamlit app with:
+
+```bash
+streamlit run yourfile.py
+```
 
 ---
 

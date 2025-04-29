@@ -2,7 +2,7 @@
 
 Welcome to the ultimate self-diagnosis tool for Radiohead fans.
 
-This app analyzes your Spotify playlist and jokeingly tells you  how likely you are to interact with women based on your Radiohead song count.
+This app analyzes your Spotify playlist and jokingly tells you, based on your Radiohead song count, how likely you are to interact with women.
 
 
 ---
@@ -61,7 +61,7 @@ client_secret="YOUR_CLIENT_SECRET"
 
 ### 3. Run the App Locally
 
-Run the Streamlit app with:
+Run the Streamlit app within the terminal with:
 
 ```bash
 streamlit run yourfile.py

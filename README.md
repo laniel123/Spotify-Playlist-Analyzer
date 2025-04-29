@@ -45,12 +45,6 @@ Install the required Python libraries using pip:
 pip install spotipy streamlit
 ```
 
-Or install all dependencies using a `requirements.txt` file (if included):
-
-```bash
-pip install -r requirements.txt
-```
-
 ### 2. Set Up Spotify API Access
 
 You will need a Spotify Developer account to access playlist and artist data.

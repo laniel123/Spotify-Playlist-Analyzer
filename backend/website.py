@@ -1,9 +1,9 @@
 import streamlit as st
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
-from classification import tracked_artists, loser_artists
+from classification import tracked_artists, artist_class
 
-#to run this code,type: cd (file path to backend folder here) and run the command: streamlit run website.py into the terminal. 
+#to run this code,type: cd (file path to backend folder here) and run the command: streamlit run .py into the terminal. 
 
 # ========== AUTHENTICATION ==========
 def authenticate_spotify():
@@ -40,7 +40,7 @@ def analyze_playlist(sp, playlist_link):
             for tracked_artist, artist_data in tracked_artists.items():
                 if tracked_artist in artists:
                     # Dynamically check if this artist counts toward loser_songs
-                    if tracked_artist in loser_artists:
+                    if tracked_artist in artist_class:
                         loser_songs += 1
 
                     # Keep your special counters like radiohead and weezer

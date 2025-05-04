@@ -1,54 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #9ad99a 0%, #296328 100%);
+    font-family: 'Rubik Mono One', sans-serif;
+    background: linear-gradient(135deg, #ff6ec7, #00f0ff, #ffde59, #ff3c38, #8c52ff);
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease infinite;
     text-align: center;
     padding: 20px;
     min-height: 100vh;
+    color: #fff;
 }
 
-/* Logo */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 .logo {
     max-width: 300px;
     width: 100%;
     height: auto;
     display: block;
-    margin: 0 auto 5px;
+    margin: 0 auto 15px;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
 }
 
-/* Input box */
+.logo:hover {
+    transform: scale(1.05) rotate(1deg);
+}
+
+h1, .subtitle {
+    background: linear-gradient(90deg, #ff6ec7, #00f0ff, #ffde59, #ff3c38);
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbowText 5s linear infinite;
+}
+
+@keyframes rainbowText {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 .playlist-input {
     width: 100%;
     max-width: 600px;
-    padding: 12px;
-    margin: 15px auto;
+    padding: 14px;
+    margin: 10px 0;
     border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 1em;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 2px solid #fff;
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    font-size: 16px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Analyze Button */
+.playlist-input::placeholder {
+    color: #ddd;
+}
+
+.playlist-input:focus {
+    outline: none;
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
 .analyze-button {
-    font-size: 16px;
-    padding: 12px 24px;
+    font-size: 18px;
+    padding: 14px 28px;
     border: none;
-    background-color: #4CAF50;
+    background: linear-gradient(45deg, #ff6ec7, #8c52ff, #00f0ff);
     color: white;
-    border-radius: 5px;
+    border-radius: 30px;
     cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 .analyze-button:hover {
-    background-color: #45a049;
-    transform: translateY(-2px);
+    background: linear-gradient(45deg, #00f0ff, #8c52ff, #ff6ec7);
+    transform: translateY(-3px) scale(1.05);
 }
 
-/* Spinner */
 #loader {
     border: 8px solid #f3f3f3;
-    border-top: 8px solid #555;
+    border-top: 8px solid #fff;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -61,33 +103,28 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/* Results boxes */
 .results-box,
 .diagnosis-box,
 .special-songs-box {
     margin-top: 20px;
     text-align: left;
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
     opacity: 0;
     transition: opacity 0.5s ease;
-    display: none; /* Start hidden */
+    display: none;
+    backdrop-filter: blur(5px);
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000,
+                 -1px 1px 0 #000, 1px 1px 0 #000; /* ✨ Black outline */
+    letter-spacing: 1px;
 }
 
-/* Active state for fade-in */
-.results-box.show,
-.diagnosis-box.show,
-.special-songs-box.show {
-    display: block;
-    opacity: 1;
-}
-
-/* Special Songs List */
 #specialSongs {
     list-style-type: disc;
     text-align: left;
@@ -96,22 +133,17 @@ body {
     padding-left: 20px;
 }
 
-/* Diagnosis Image */
 #diagnosisImage {
     display: none;
     max-width: 300px;
-    margin: 20px auto 0;
+    margin-top: 20px;
     border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.results-box,
+.diagnosis-box,
+.special-songs-box {
+    opacity: 0; /* Start invisible */
     transition: opacity 0.5s ease;
 }
-
-/* Optional: Mobile tweaks */
-@media (max-width: 500px) {
-    .playlist-input {
-        width: 95%;
-    }
-    .analyze-button {
-        width: 95%;
-    }
-}
-

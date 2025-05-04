@@ -1,7 +1,7 @@
 
   body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    background: linear-gradient(135deg, #9ad99a 0%, #296328 100%);
     text-align: center;
     padding: 20px;
     min-height: 100vh;
@@ -70,14 +70,6 @@ button:hover {
     100% { transform: rotate(360deg); }
   }
 
-  body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-    text-align: center;
-    padding: 20px;
-    min-height: 100vh;
-}
-
 .results-box, .diagnosis-box, .special-songs-box {
     margin-top: 20px;
     text-align: left;
@@ -88,4 +80,51 @@ button:hover {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.logo {
+    max-width: 300px !important;
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+    margin: 0 auto 5px;
+}
+
+.analyze-button {
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+.analyze-button:hover {
+    background-color: #45a049;
+}
+
+.playlist-input {
+    width: 100%;
+    max-width: 600px;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.results-box,
+.diagnosis-box,
+.special-songs-box,
+#diagnosisImage {
+    display: none;
+}
+
+.results-box,
+.diagnosis-box,
+.special-songs-box {
+    opacity: 0;             /* Start invisible */
+    transition: opacity 0.5s ease; /* Smooth fade-in */
 }

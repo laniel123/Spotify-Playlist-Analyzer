@@ -6,7 +6,18 @@ document.getElementById('analyzeBtn').addEventListener('click', function() {
     const diagnosisImage = document.getElementById('diagnosisImage');
     const loader = document.getElementById('loader');
 
-    // Reset previous results
+    // Smoothly fade out + hide previous results
+    resultsDiv.style.opacity = 0;
+    diagnosisDiv.style.opacity = 0;
+    specialContainer.style.opacity = 0;
+
+    setTimeout(() => {
+        resultsDiv.style.display = 'none';
+        diagnosisDiv.style.display = 'none';
+        specialContainer.style.display = 'none';
+    }, 500); // Match the fade-out time (0.5s)
+
+    // Clear previous content
     resultsDiv.innerText = '';
     diagnosisDiv.innerText = '';
     specialContainer.innerHTML = '';
@@ -33,6 +44,10 @@ document.getElementById('analyzeBtn').addEventListener('click', function() {
 
         if (data.error) {
             resultsDiv.innerText = "Error analyzing playlist. Please try again.";
+            resultsDiv.style.display = 'block';
+            setTimeout(() => {
+                resultsDiv.style.opacity = 1;
+            }, 10);
             return;
         }
 
@@ -60,20 +75,6 @@ document.getElementById('analyzeBtn').addEventListener('click', function() {
             diagnosisText = "\nDiagnosis: 0 songs wow!! You go outside and talk to women!!! Good Job!";
         }
 
-        // Handle special messages
-        specialContainer.innerHTML = "<h3>Special Songs Detected</h3>";
-        if (data.special_messages && data.special_messages.length > 0) {
-            data.special_messages.forEach(message => {
-            const msgElem = document.createElement('p');
-            msgElem.innerText = `- ${message}`;
-            specialContainer.appendChild(msgElem);
-            });
-        } else {
-            const noMsgElem = document.createElement('p');
-            noMsgElem.innerText = "No special songs detected. You are safe... for now.";
-            specialContainer.appendChild(noMsgElem);
-        }
-
         diagnosisDiv.innerText = diagnosisText;
 
         // Handle special messages
@@ -89,10 +90,28 @@ document.getElementById('analyzeBtn').addEventListener('click', function() {
             noMsgElem.innerText = "No special songs detected. You are safe... for now.";
             specialContainer.appendChild(noMsgElem);
         }
+
+        // ✅ Show all sections and fade in smoothly
+        resultsDiv.style.display = 'block';
+        diagnosisDiv.style.display = 'block';
+        specialContainer.style.display = 'block';
+
+        setTimeout(() => {
+            resultsDiv.style.opacity = 1;
+            diagnosisDiv.style.opacity = 1;
+            specialContainer.style.opacity = 1;
+        }, 10);
+
+        // 🎉 Launch confetti
+        confetti();
     })
     .catch(error => {
         console.error('Error:', error);
         loader.style.display = 'none';  // Hide spinner on error
         resultsDiv.innerText = "Error analyzing playlist. Please try again.";
+        resultsDiv.style.display = 'block';
+        setTimeout(() => {
+            resultsDiv.style.opacity = 1;
+        }, 10);
     });
 });

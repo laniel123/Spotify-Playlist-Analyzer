@@ -1,5 +1,3 @@
-# python_api/utils/spotify_helper.py
-
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from classification import tracked_artists, artist_class
@@ -50,4 +48,4 @@ def analyze_playlist(playlist_link):
         "weezer_songs": weezer_songs,
         "loser_songs": loser_songs,
         "special_messages": special_messages
-    }
+    } 

@@ -1,9 +1,5 @@
-
-
-# python_api/main.py
-
 from flask import Flask, request, jsonify
-from utils.spotify_helper import analyze_playlist
+from utils.spotify_api import analyze_playlist
 
 app = Flask(__name__)
 

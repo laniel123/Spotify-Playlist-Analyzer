@@ -1,3 +1,9 @@
+
+//This is the JavaScript code for the frontend of the playlist analyzer app.
+// It handles the button click event, sends the playlist link to the backend,
+// and displays the results and funny diagnosis based on the analysis.
+// It also includes the logic for displaying special messages and images based on the analysis results.
+
 function analyzePlaylist() {
     const playlistLink = document.getElementById('playlistLink').value;
     const resultsDiv = document.getElementById('results');
@@ -62,7 +68,6 @@ function funnyDiagnosis(total_songs, radiohead_songs, special_messages, weezer_s
     let diagnosisText = '';
 
     if (loser_songs >= 50) {
-        diagnosisText = "\nDiagnosis: You absolutely repell women.";
         diagnosisImage.style.display = 'block';  // Show image if 50+
     } else if (loser_songs >= 40) {
         diagnosisText = "\nDiagnosis: You havent talked to a woman in years have you??";

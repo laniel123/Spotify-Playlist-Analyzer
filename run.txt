@@ -1,0 +1,21 @@
+
+# for every cd copy file path 
+# 1. Backend setup
+
+cd python_api
+pip install -r requirements.txt
+# OR if no requirements.txt yet:
+pip install flask spotipy flask-cors
+
+# (Optional: save the dependencies)
+pip freeze > requirements.txt
+
+# Run Flask
+python3 main.py
+
+# 2. Frontend setup
+cd ../frontend
+# Serve frontend (OPTIONAL but recommended)
+python -m http.server 8000
+
+# (Then visit http://localhost:8000 in your browser) 

@@ -1,114 +1,98 @@
-
-//This is the JavaScript code for the frontend of the playlist analyzer app.
-// It handles the button click event, sends the playlist link to the backend,
-// and displays the results and funny diagnosis based on the analysis.
-// It also includes the logic for displaying special messages and images based on the analysis results.
-
-function analyzePlaylist() {
-    const playlistLink = document.getElementById('playlistLink').value;
+document.getElementById('analyzeBtn').addEventListener('click', function() {
+    const playlistLink = document.getElementById('playlistLink').value.trim();
     const resultsDiv = document.getElementById('results');
     const diagnosisDiv = document.getElementById('diagnosis');
     const specialContainer = document.getElementById('specialSongs');
     const diagnosisImage = document.getElementById('diagnosisImage');
+    const loader = document.getElementById('loader');
 
-    // Reset display
+    // Reset previous results
     resultsDiv.innerText = '';
     diagnosisDiv.innerText = '';
     specialContainer.innerHTML = '';
     diagnosisImage.style.display = 'none';
 
     if (!playlistLink) {
-        resultsDiv.innerText = "Please enter a playlist link.";
+        alert("Please enter a playlist link.");
         return;
     }
 
-    fetch('http://127.0.0.1:5000/analyze', {  // Change if using Java backend
+    // Show the spinner
+    loader.style.display = 'block';
+
+    fetch('http://127.0.0.1:5000/analyze', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ playlist_link: playlistLink })
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Server error: ${response.statusText}`);
-        }
-        return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
-        // Show basic stats
-        resultsDiv.innerText = `Detected ${data.radiohead_songs} Radiohead songs, ${data.weezer_songs} Weezer songs out of ${data.total_songs} total songs. You have ${data.loser_songs} loser songs.`;
+        loader.style.display = 'none';  // Hide spinner
 
-        // Call the funny diagnosis logic
-        funnyDiagnosis(
-            data.total_songs,
-            data.radiohead_songs,
-            data.special_messages,
-            data.weezer_songs,
-            data.loser_songs
-        );
+        if (data.error) {
+            resultsDiv.innerText = "Error analyzing playlist. Please try again.";
+            return;
+        }
+
+        // Show basic stats
+        resultsDiv.innerText = `I Detected ${data.radiohead_songs} Radiohead songs and ${data.weezer_songs} Weezer songs out of ${data.total_songs} total songs. You have ${data.loser_songs} loser songs.`;
+
+        // Show funny diagnosis
+        let diagnosisText = "";
+
+        if (data.loser_songs >= 50) {
+            diagnosisText = "\nDiagnosis: You absolutely repell women.";
+        } else if (data.loser_songs >= 40) {
+            diagnosisText = "\nDiagnosis: You havent talked to a woman in years have you??";
+        } else if (data.loser_songs >= 30) {
+            diagnosisText = "\nDiagnosis: You once made eye contact with a woman and still havent forgotten them.";
+        } else if (data.loser_songs >= 20) {
+            diagnosisText = "\nDiagnosis: You try to talk to women but end up scaring them away... aww :(.";
+        } else if (data.loser_songs >= 10) {
+            diagnosisText = "\nDiagnosis: You think about texting women, but never do. You are a coward.";
+        } else if (data.loser_songs <= 5 && data.loser_songs >= 2) {
+            diagnosisText = "\nDiagnosis: You talk to women but I dunno, you are pushing it pal.";
+        } else if (data.loser_songs === 1) {
+            diagnosisText = "\nDiagnosis: Only one song, ok , you talk to women good job!";
+        } else {
+            diagnosisText = "\nDiagnosis: 0 songs wow!! You go outside and talk to women!!! Good Job!";
+        }
+
+        // Handle special messages
+        specialContainer.innerHTML = "<h3>Special Songs Detected</h3>";
+        if (data.special_messages && data.special_messages.length > 0) {
+            data.special_messages.forEach(message => {
+            const msgElem = document.createElement('p');
+            msgElem.innerText = `- ${message}`;
+            specialContainer.appendChild(msgElem);
+            });
+        } else {
+            const noMsgElem = document.createElement('p');
+            noMsgElem.innerText = "No special songs detected. You are safe... for now.";
+            specialContainer.appendChild(noMsgElem);
+        }
+
+        diagnosisDiv.innerText = diagnosisText;
+
+        // Handle special messages
+        specialContainer.innerHTML = "<h3>Special Songs Detected</h3>";
+        if (data.special_messages && data.special_messages.length > 0) {
+            data.special_messages.forEach(message => {
+                const msgElem = document.createElement('p');
+                msgElem.innerText = `- ${message}`;
+                specialContainer.appendChild(msgElem);
+            });
+        } else {
+            const noMsgElem = document.createElement('p');
+            noMsgElem.innerText = "No special songs detected. You are safe... for now.";
+            specialContainer.appendChild(noMsgElem);
+        }
     })
-    .catch(err => {
-        console.error(err);
+    .catch(error => {
+        console.error('Error:', error);
+        loader.style.display = 'none';  // Hide spinner on error
         resultsDiv.innerText = "Error analyzing playlist. Please try again.";
     });
-}
-
-function funnyDiagnosis(total_songs, radiohead_songs, special_messages, weezer_songs, loser_songs) {
-    const diagnosisDiv = document.getElementById('diagnosis');
-    const specialContainer = document.getElementById('specialSongs');
-    const diagnosisImage = document.getElementById('diagnosisImage');
-
-    // Clear old data
-    diagnosisDiv.innerText = '';
-    specialContainer.innerHTML = '';
-    diagnosisImage.style.display = 'none';
-
-    // ========== FUNNY DIAGNOSIS ==========
-    let diagnosisText = '';
-
-    if (loser_songs >= 50) {
-        diagnosisText = "\nDiagnosis: You absolutely repell women.";
-        diagnosisImage.src = 'images/sad-thom.jpg';  // Set src dynamically
-        diagnosisImage.style.display = 'block';      // Show image
-    } else if (loser_songs >= 40) {
-        diagnosisText = "\nDiagnosis: You havent talked to a woman in years have you??";
-        diagnosisImage.src = 'images/sad-thom.jpg';  // Set src dynamically
-        diagnosisImage.style.display = 'block';
-    }
-    else if (loser_songs >= 30) {
-        diagnosisText = "\nDiagnosis: You once made eye contact with a woman and still havent forgotten them.";
-    } else if (loser_songs >= 20) {
-        diagnosisText = "\nDiagnosis: You try to talk to women but end up scaring them away... aww :(.";
-    } else if (loser_songs >= 10) {
-        diagnosisText = "\nDiagnosis: You think about texting women, but never do. You are a coward.";
-    } else if (loser_songs <= 5 && loser_songs >= 2) {
-        diagnosisText = "\nDiagnosis: You talk to women but I dunno, you are pushing it pal.";
-    } else if (loser_songs === 1) {
-        diagnosisText = "\nDiagnosis: Only one song, ok , you talk to women good job!";
-    } else {
-        diagnosisText = "\nDiagnosis: 0 songs wow!! You go outside and talk to women!!! Good Job!";
-    }
-
-    diagnosisDiv.innerText = diagnosisText;
-
-    // ========== SPECIAL SONGS ==========
-    const specialHeader = document.createElement('h3');
-    specialHeader.textContent = "Special Songs Detected";
-    specialContainer.appendChild(specialHeader);
-
-    if (special_messages && special_messages.length > 0) {
-        special_messages.forEach(message => {
-            const li = document.createElement('li');
-            li.textContent = `- ${message}`;
-            specialContainer.appendChild(li);
-        });
-    } else {
-        const li = document.createElement('li');
-        li.textContent = "No special songs detected. You are safe... for now.";
-        specialContainer.appendChild(li);
-    }
-}
-
-// Hook up the button click event
-document.getElementById('analyzeBtn').addEventListener('click', analyzePlaylist);
+});

@@ -1,5 +1,11 @@
+import streamlit as st
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+from classification import tracked_artists, artist_class
+
+# To start the website:  
+# Run the command: cd (file path to backend folder here) 
+# Run the command: streamlit run website.py into the terminal. 
 
 # ========== AUTHENTICATION ==========
 def authenticate_spotify():
@@ -9,10 +15,10 @@ def authenticate_spotify():
     ))
     return sp
 
-# ========== COUNT RADIOHEAD SONGS & DETECT SPECIAL SONGS ==========
+# ========== ANALYZE PLAYLIST ==========
+
 def analyze_playlist(sp, playlist_link):
     playlist_id = playlist_link.split("/")[-1].split("?")[0]
-
     results = sp.playlist_tracks(playlist_id)
     tracks = results['items']
 
@@ -22,81 +28,94 @@ def analyze_playlist(sp, playlist_link):
 
     total_songs = len(tracks)
     radiohead_songs = 0
-    special_songs_found = []
+    weezer_songs = 0
+    loser_songs = 0
+    special_messages = []
 
     for item in tracks:
         track = item['track']
-        if track is not None:
+        
+        if track is not None and track.get('name') and track.get('artists'):
             track_name = track['name'].lower()
-            artists = [artist['name'].lower() for artist in track['artists']]
+            artists = [artist['name'].lower() for artist in track['artists'] if artist.get('name')]
 
-            if "radiohead" in artists:
-                radiohead_songs += 1
+            for tracked_artist, artist_data in tracked_artists.items():
+                if tracked_artist in artists:
+                    
+                    # Dynamically check if this artist counts toward loser_songs
+                    if tracked_artist in artist_class:
+                        loser_songs += 1
 
-            # Special Song Detection (Fuzzy match inside title)
-            if "creep" in track_name and "radiohead" in artists:
-                special_songs_found.append(track_name)
-            if "exit music (for a film)" in track_name and "radiohead" in artists:
-                special_songs_found.append(track_name)
-            if "true love waits" in track_name and "radiohead" in artists:
-                special_songs_found.append(track_name)
+                    if tracked_artist == "radiohead":
+                        radiohead_songs += 1
 
-    return total_songs, radiohead_songs, special_songs_found
+                    if tracked_artist == "weezer":
+                        weezer_songs += 1
 
-# ========== DIAGNOSIS BASED ON RADIOHEAD % ==========
-def funny_diagnosis(playlist_name, total_songs, radiohead_songs, special_songs_found):
-    print(f"\n📜 Playlist Analysis for '{playlist_name}' 📜")
-    print(f"Total Songs: {total_songs}")
-    print(f"Radiohead Songs: {radiohead_songs}")
+                    # Special songs detection
+                    for special_song, special_message in artist_data["special_songs"].items():
+                        if special_song in track_name:
+                            special_messages.append(special_message)
 
-    if total_songs == 0:
-        print("\nDiagnosis: Empty playlist detected. Please seek help.")
-        return
+    return total_songs, radiohead_songs, special_messages, weezer_songs, loser_songs
 
-    radiohead_percentage = (radiohead_songs / total_songs) * 100
+# ========== FUNNY DIAGNOSIS ==========
+def funny_diagnosis(total_songs, radiohead_songs, special_messages, weezer_songs, loser_songs):
 
-    # LOWERCASE the detected special songs
-    lowercase_specials = [song.lower() for song in special_songs_found]
-
-    # YOUR CUSTOM PRINTS (unchanged)
-    if "creep" in lowercase_specials:
-        print("\nWe Detected Creep. Therapy is recommended.")
-    if "exit music (for a film)" in lowercase_specials:
-        print("\nDetected 'Exit Music (for a Film)'. Immediate hug required.")
-    if "true love waits" in lowercase_specials:
-        print("\nWe Detected True Love Waits. Do you need a hug??")
-    if "true love waits-live in oslo" in lowercase_specials:
-        print("\nWe Detected True Love Waits... LIVE IN OSLO??. Do you need a hug?? Like really.. do you need a hug??")
-
-    if not special_songs_found:
-        print("\nNo special songs detected. You are safe ... for now.")
-
-    # Normal Radiohead percentage diagnosis
-    if radiohead_percentage >= 90:
-        print("\nDiagnosis: You repell women.'")
-    elif radiohead_percentage >= 70:
-        print("\nDiagnosis: You try to talk to women but they find you offputting")
-    elif radiohead_percentage >= 40:
-        print("\nDiagnosis: You sometimes think about texting her but end up just listening to 'How to Disappear Completely.'")
-    elif radiohead_percentage >= 10:
-        print("\nDiagnosis: You go outside. Good job :D ")
+    st.subheader("So do you?")
+    
+    if loser_songs >= 50:
+        st.write("\nDiagnosis: You absolutely repell women.")
+        
+    elif loser_songs >= 40:
+        st.write("\nDiagnosis: You havent talked to a woman in years have you??")
+        
+    elif loser_songs >= 30:
+        st.write("\nDiagnosis: You once made eye contact with a woman and still havent forgotten them.")
+        
+    elif loser_songs >= 20:
+        st.write("\nDiagnosis: You try to talk to women but end up scaring them away... aww :(.")
+        
+    elif loser_songs >= 10:
+        st.write("\nDiagnosis: You think about texting women, but never do. You are a coward.")
+        
+    elif loser_songs <= 5 and loser_songs >= 2:
+        st.write("\nDiagnosis: You talk to women but I dunno, you are pushing it pal.")
+        
+    elif loser_songs == 1:
+        st.write("\nDiagnosis: Only one song, ok , you talk to women good job!")
     else:
-        print("\nDiagnosis: You're surprisingly well adjusted. Are you sure you even listen to Radiohead?")
+        st.write("\nDiagnosis: 0 songs wow!! You go outside and talk to women!!! Good Job!")
+    
+    st.subheader("Special Songs Detected")
+    if special_messages:
+        for message in special_messages:
+            st.write(f"- {message}")
+    else:
+        st.write("No special songs detected. You are safe... for now.")
 
-# ========== MAIN ==========
+
+# ========== STREAMLIT UI ==========
 def main():
-    sp = authenticate_spotify()
+    st.title("Do You Talk To Women?")
 
-    playlist_link = input("\nPaste a Spotify playlist link to analyze: ")
+    playlist_link = st.text_input("Paste a Spotify playlist link here:")
 
-    playlist_id = playlist_link.split("/")[-1].split("?")[0]
-    playlist_info = sp.playlist(playlist_id)
-    playlist_name = playlist_info['name']
+    if st.button("Analyze Playlist"):
+        if playlist_link:
+            with st.spinner("Analyzing playlist..."):
+                sp = authenticate_spotify()
+                try:
+                    total_songs, radiohead_songs, special_messages, weezer_songs, loser_songs  = analyze_playlist(sp, playlist_link)
 
-    total_songs, radiohead_songs, special_songs_found = analyze_playlist(sp, playlist_link)
+                    st.write(f" I detected {radiohead_songs} Radiohead songs & {weezer_songs} Weezer songs out of {total_songs} total songs.")
+                    st.write(f"You have {loser_songs} loser songs out of {total_songs} total songs.") 
+                    funny_diagnosis(total_songs, radiohead_songs, special_messages, weezer_songs, loser_songs)
 
-    funny_diagnosis(playlist_name, total_songs, radiohead_songs, special_songs_found)
+                except Exception as e:
+                    st.error(f"Error analyzing playlist: {e}")
+        else:
+            st.error("Please paste a playlist link!")
 
-# Run it
 if __name__ == "__main__":
     main()

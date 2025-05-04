@@ -2,23 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Do You Talk To Women? Diagnosis</title>
+    <title>Do You Talk To Women?</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <div class="container">
+        <h1>Do You Talk To Women?</h1>
+        <p class="subtitle">Paste a Spotify playlist link here:</p>
 
-    <h1>Do You Talk To Women?</h1>
-    <input type="text" id="playlistLink" placeholder="Paste your Spotify playlist link" size="60">
-    <button id="analyzeBtn">Analyze</button>
+        <div class="input-section">
+            <input type="text" id="playlistLink" placeholder="Enter your Spotify playlist link here">
+            <button id="analyzeBtn" class="outline-btn">Analyze Playlist</button>
+        </div>
 
-    <div id="results"></div>
-    <div id="diagnosis"></div>
+        <!-- Spinner -->
+        <div id="loader" style="display: none; margin-top: 20px;"></div>
 
-    <h2>Special Songs Detected</h2>
-    <ul id="specialSongs"></ul>
+        <!-- Results Section -->
+        <div id="results" class="results-box"></div>
 
-    <div id="imageContainer">
-        <img id="diagnosisImage" alt="Sad Thom" style="display:none; max-width: 300px; margin-top: 20px;">    </div>
+        <div id="diagnosis" class="diagnosis-box"></div>
+
+        <div id="specialSongs" class="special-songs-box"></div>
+
+        <img id="diagnosisImage" alt="Sad Thom" style="display:none; max-width: 300px; margin-top: 20px;">
+    </div>
+
     <script src="js/app.js"></script>
 </body>
-</html>
+</html> 

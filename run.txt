@@ -3,7 +3,9 @@
 # 1. Backend setup
 
 cd python_api
+
 pip install -r requirements.txt
+
 # OR if no requirements.txt yet:
 pip install flask spotipy flask-cors
 
@@ -15,7 +17,14 @@ python3 main.py
 
 # 2. Frontend setup
 cd ../frontend
+
 # Serve frontend (OPTIONAL but recommended)
-python -m http.server 8000
+python3 -m http.server 8000
 
 # (Then visit http://localhost:8000 in your browser) 
+
+#Optional 
+
+If you want to stop seeing the favicon error, you can create a quick dummy:
+
+touch frontend/favicon.ico 

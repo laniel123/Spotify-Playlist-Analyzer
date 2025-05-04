@@ -68,11 +68,15 @@ function funnyDiagnosis(total_songs, radiohead_songs, special_messages, weezer_s
     let diagnosisText = '';
 
     if (loser_songs >= 50) {
-        diagnosisImage.style.display = 'block';  // Show image if 50+
+        diagnosisText = "\nDiagnosis: You absolutely repell women.";
+        diagnosisImage.src = 'images/sad-thom.jpg';  // Set src dynamically
+        diagnosisImage.style.display = 'block';      // Show image
     } else if (loser_songs >= 40) {
         diagnosisText = "\nDiagnosis: You havent talked to a woman in years have you??";
-        diagnosisImage.style.display = 'block';  // Show image if 40+
-    } else if (loser_songs >= 30) {
+        diagnosisImage.src = 'images/sad-thom.jpg';  // Set src dynamically
+        diagnosisImage.style.display = 'block';
+    }
+    else if (loser_songs >= 30) {
         diagnosisText = "\nDiagnosis: You once made eye contact with a woman and still havent forgotten them.";
     } else if (loser_songs >= 20) {
         diagnosisText = "\nDiagnosis: You try to talk to women but end up scaring them away... aww :(.";

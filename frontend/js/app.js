@@ -107,8 +107,34 @@ document.getElementById('analyzeBtn').addEventListener('click', function () {
             fadeIn(specialContainer);
 
             // 🎉 Confetti (adjust duration here)
-            const duration = 3000; // 3 seconds
+            const duration = 2500; // 2.5 seconds
             const animationEnd = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 }
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 }
+                });
+
+                if (Date.now() < animationEnd) {
+                    requestAnimationFrame(frame);
+                }
+            })();
+
+            // 🔊 Play sound after confetti
+            setTimeout(() => {
+                const sound = document.getElementById('celebrationSound');
+                sound.currentTime = -0.5; // Reset in case it played before
+                sound.play();
+            }, duration);
 
             (function frame() {
                 confetti({

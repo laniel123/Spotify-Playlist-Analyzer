@@ -1,22 +1,37 @@
+/* Import Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
 
+/* Global Styles */
 body {
     font-family: 'Rubik Mono One', sans-serif;
     background: linear-gradient(135deg, #ff6ec7, #00f0ff, #ffde59, #ff3c38, #8c52ff);
     background-size: 400% 400%;
-    animation: gradientShift 10s ease infinite;
+    animation: gradientShift 40s ease infinite;
     text-align: center;
     padding: 20px;
     min-height: 100vh;
     color: #fff;
 }
 
+/* Keyframes */
 @keyframes gradientShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
+@keyframes rainbowText {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Logo */
 .logo {
     max-width: 300px;
     width: 100%;
@@ -31,21 +46,16 @@ body {
     transform: scale(1.05) rotate(1deg);
 }
 
+/* Headings */
 h1, .subtitle {
     background: linear-gradient(90deg, #ff6ec7, #00f0ff, #ffde59, #ff3c38);
     -webkit-background-clip: text;
-    background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: rainbowText 5s linear infinite;
 }
 
-@keyframes rainbowText {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
+/* Input Fields */
 .playlist-input {
     width: 100%;
     max-width: 600px;
@@ -70,6 +80,7 @@ h1, .subtitle {
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
 
+/* Buttons */
 .analyze-button {
     font-size: 18px;
     padding: 14px 28px;
@@ -80,7 +91,7 @@ h1, .subtitle {
     cursor: pointer;
     margin-top: 15px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .analyze-button:hover {
@@ -88,6 +99,7 @@ h1, .subtitle {
     transform: translateY(-3px) scale(1.05);
 }
 
+/* Loader */
 #loader {
     border: 8px solid #f3f3f3;
     border-top: 8px solid #fff;
@@ -98,11 +110,7 @@ h1, .subtitle {
     margin: 20px auto;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
+/* Results and Boxes */
 .results-box,
 .diagnosis-box,
 .special-songs-box {
@@ -125,6 +133,7 @@ h1, .subtitle {
     letter-spacing: 1px;
 }
 
+/* Special Songs */
 #specialSongs {
     list-style-type: disc;
     text-align: left;
@@ -133,6 +142,7 @@ h1, .subtitle {
     padding-left: 20px;
 }
 
+/* Diagnosis Image */
 #diagnosisImage {
     display: none;
     max-width: 300px;
@@ -141,9 +151,40 @@ h1, .subtitle {
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
 
-.results-box,
-.diagnosis-box,
-.special-songs-box {
-    opacity: 0; /* Start invisible */
-    transition: opacity 0.5s ease;
+
+.weezer-image:hover {
+    transform: scale(1.05);
+}
+
+.weezer-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    z-index: 100;
+}
+
+.weezer-image {
+    max-width: 100%;
+    display: block;
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.volume-control {
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+    border: #000;
+}
+
+#volumeSlider {
+    width: 200px;
+    margin-top: 10px;
 }

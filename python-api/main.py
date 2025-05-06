@@ -1,22 +1,13 @@
-from flask import Flask, request, jsonify, make_response
+from flask import Flask, request, jsonify
 from flask_cors import CORS
-from utils.spotify_api import analyze_playlist  # ✅ update path if needed
+from utils.spotify_api import analyze_playlist  # update path if needed
+
 
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/analyze', methods=['POST', 'OPTIONS'])
+@app.route('/analyze', methods=['POST'])
 def analyze():
-    # Handle CORS preflight (OPTIONS)
-    if request.method == 'OPTIONS':
-        print("DEBUG: Received OPTIONS preflight request")
-        response = make_response()
-        response.headers.add("Access-Control-Allow-Origin", "*")
-        response.headers.add("Access-Control-Allow-Headers", "Content-Type")
-        response.headers.add("Access-Control-Allow-Methods", "POST")
-        return response
-
-    # Handle POST request
     data = request.get_json()
     print("DEBUG: Received data:", data)
 

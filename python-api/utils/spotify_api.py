@@ -1,12 +1,13 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
-from classification import tracked_artists, artist_class
+from utils.classification import tracked_artists, artist_class
 
 def analyze_playlist(playlist_link):
     sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(
         client_id="78e6a0058e734633b7a089734a361292",
         client_secret="687d40e1362a463a84ada8b73915a7fa"
     ))
+
 
     playlist_id = playlist_link.split("/")[-1].split("?")[0]
     results = sp.playlist_tracks(playlist_id)

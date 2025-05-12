@@ -68,19 +68,19 @@ document.getElementById('analyzeBtn').addEventListener('click', function () {
             let diagnosisText = "";
 
             if (data.loser_songs >= 50) {
-                diagnosisText = "\nDiagnosis: You absolutely repell women.";
+                diagnosisText = "\nDiagnosis: You have never gone outside.";
             } else if (data.loser_songs >= 40) {
-                diagnosisText = "\nDiagnosis: You havent talked to a woman in years have you??";
+                diagnosisText = "\nDiagnosis: You havent gone outside in years have you??";
             } else if (data.loser_songs >= 30) {
-                diagnosisText = "\nDiagnosis: You once made eye contact with a woman and still havent forgotten them.";
+                diagnosisText = "\nDiagnosis: You used to go outside but no longer becuase you are watching too many history docs.";
             } else if (data.loser_songs >= 20) {
-                diagnosisText = "\nDiagnosis: You try to talk to women but end up scaring them away... aww :(.";
+                diagnosisText = "\nDiagnosis: You stepped outside but the touch of grass scared you ... aww :(.";
             } else if (data.loser_songs >= 10) {
-                diagnosisText = "\nDiagnosis: You think about texting women, but never do. You are a coward.";
+                diagnosisText = "\nDiagnosis: You have gone outside once or twice I guess....";
             } else if (data.loser_songs <= 5 && data.loser_songs >= 2) {
-                diagnosisText = "\nDiagnosis: You talk to women but I dunno, you are pushing it pal.";
+                diagnosisText = "\nDiagnosis: You do go outside but I dunno, you are pushing it pal.";
             } else if (data.loser_songs === 1) {
-                diagnosisText = "\nDiagnosis: Only one song, ok , you talk to women good job!";
+                diagnosisText = "\nDiagnosis: Only one song, ok , you go outside good job!";
             } else {
                 diagnosisText = "\nDiagnosis: 0 songs wow!! You go outside and talk to women!!! Good Job!";
             }

@@ -150,3 +150,91 @@ h1, .subtitle {
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
+
+/* Base typography & layout */
+body, input, textarea, button, select, p {
+  font-family: 'Archivo Narrow', sans-serif;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  font-size: 17px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeSpeed;
+  color: #222;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header styles */
+.header-wrapper {
+  width: 100%;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #ddd;
+}
+
+.site-header {
+  width: 100%;
+}
+
+.page-width {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 20px;
+}
+
+.header-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon-hamburger path {
+  stroke: #000;
+  stroke-width: 5;
+  fill: none;
+}
+
+.site-header__logo img {
+  max-height: 60px;
+  height: auto;
+}
+
+/* Main container */
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.playlist-input {
+  width: 80%;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.analyze-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.results-box,
+.diagnosis-box,
+.special-songs-box {
+  margin-top: 20px;
+}
+
+#diagnosisImage {
+  display: none;
+  max-width: 300px;
+  margin-top: 20px;
+}
+
+#loader {
+  display: none;
+  margin-top: 20px;
+}

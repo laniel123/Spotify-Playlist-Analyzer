@@ -33,14 +33,14 @@ This project creatively uses music data to engage users through interactive anal
 
 ##  Installation
 
-### 1. Clone the Repository
+### 1 Clone the Repository
 
 ```bash
 git clone https://github.com/laniel123/Spotify-Playlist-Analyzer.git
 cd Spotify-Playlist-Analyzer
 ```
 
-### 2. Set Up Spotify Developer Credentials
+### 2 Set Up Spotify Developer Credentials
 
 1. Go to https://developer.spotify.com
 2. Create an application and retrieve your **Client ID** and **Client Secret**
@@ -56,7 +56,7 @@ client_secret = "YOUR_CLIENT_SECRET"
 
 To run the project locally, follow the steps below.
 
-### 1. Backend Setup
+### 1 Backend Setup
 
 Navigate to the backend directory:
 
@@ -90,7 +90,7 @@ python3 main.py
 
 ---
 
-### 2. Frontend Setup
+### 2 Frontend Setup
 
 Navigate to the frontend directory:
 

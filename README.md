@@ -122,22 +122,17 @@ touch frontend/favicon.ico
 
 ---
 
-
 ##  Project Structure
 
-```
-Spotify-Playlist-Analyzer/
-├── css/
-│   └── styles.css
-├── js/
-│   └── app.js
-├── images/
-│   └── dyttw_logo3.png
-├── sounds/
-│   └── celebration.mp3
-├── index.html
-├── main.py
-```
+- `python_api/` – Flask backend that processes playlist data using the Spotify API
+- `frontend/` – Static HTML/CSS/JavaScript frontend served locally in the browser
+- `css/` – Styling for the app interface (within frontend)
+- `js/` – JavaScript logic for making API calls and UI interaction
+- `images/` – App logos or images
+- `sounds/` – Audio files 
+- `index.html` – Main frontend page rendered in browser
+- `main.py` – Python Flask application that powers the backend
+- `requirements.txt` – Python dependencies used in the backend
 
 ---
 

@@ -1,86 +1,157 @@
-## Do You Talk To Women? 
+# Spotify Playlist Analyzer
 
-Welcome to the ultimate self-diagnosis tool for Radiohead fans.
+**Spotify Playlist Analyzer** (also known as **“Do You Talk To Women?”**) is a full-stack web application that humorously evaluates Spotify playlists by analyzing the presence of emotionally introspective artists such as Radiohead and Weezer. While framed around inside jokes based on the two bands' communities, the app demonstrates skills in API integration, frontend design, and Flask-based backend development.
 
-This app analyzes your Spotify playlist and jokingly tells you, based on your Radiohead song count, how likely you are to interact with women.
-
+This project creatively uses music data to engage users through interactive analysis, multimedia feedback, and a responsive interface.
 
 ---
 
 ## Features
 
-- Paste any Spotify playlist
-- Detects how many Radiohead songs you have
-- Special detection for various songs notable within the band's communities.
-- Gives a humorous diagnosis about your social life
-- Displays different images depending on how doomed you are
+- Accepts public Spotify playlist URLs
+- Parses and counts songs by selected artists
+- Recognizes key tracks and returns custom messages
+- Displays a lighthearted “diagnosis” based on emotional tone
+- Includes sound and animation effects for user feedback
+- Fully responsive frontend with gradient animation and hover effects
 
 ---
 
-## How It Works
+## Tech Stack
 
-1. Paste your Spotify playlist link.
-2. The app scans your songs.
-3. Diagnoses your emotional well-being (and relationship prospects) based on Radiohead saturation.
-4. Laugh. Cry. Make another sad playlist.
+**Frontend**
+- HTML5, CSS3, JavaScript  
+- Responsive design with animation and user feedback
 
----
-
-## Built With
-
-- Python
-- Streamlit
-- Spotipy (Spotify API wrapper)
+**Backend**
+- Python 3  
+- Flask (REST API)  
+- Spotipy (Spotify Web API wrapper)  
+- Flask-CORS
 
 ---
-## Requirements
 
-To run this project locally, follow these steps:
+## 📦 Installation
 
-### 1. Install Python Packages
-
-Install the required Python libraries using pip:
+### 1. Clone the Repository
 
 ```bash
-pip install spotipy streamlit
+git clone https://github.com/laniel123/Spotify-Playlist-Analyzer.git
+cd Spotify-Playlist-Analyzer
 ```
 
-### 2. Set Up Spotify API Access
+### 2. Set Up Spotify Developer Credentials
 
-You will need a Spotify Developer account to access playlist and artist data.
-
-1. Go to https://developer.spotify.com.
-2. Log in and create an app.
-3. Copy your **Client ID** and **Client Secret**.
-4. In the Python code, replace the placeholders:
+1. Go to https://developer.spotify.com
+2. Create an application and retrieve your **Client ID** and **Client Secret**
+3. Replace the values in `main.py`:
 
 ```python
-client_id="YOUR_CLIENT_ID"
-client_secret="YOUR_CLIENT_SECRET"
-```
-
-### 3. Run the App Locally
-
-Run the Streamlit app within the terminal with:
-
-```bash
-cd (file path to backend folder here)
-```
-
-```bash
-streamlit run yourfile.py
+client_id = "YOUR_CLIENT_ID"
+client_secret = "YOUR_CLIENT_SECRET"
 ```
 ---
 
-## Future Ideas
+## Local Development Instructions
 
-- Support for other artists (Weezer, Elliott Smith, The Smiths, etc.)
-- Create a Java-based website.
-- Dynamic memes
-- Therapy resources link 
+To run the project locally, follow the steps below.
+
+### 1. Backend Setup
+
+Navigate to the backend directory:
+
+```bash
+cd python_api
+```
+
+Install the necessary dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+If `requirements.txt` does not exist:
+
+```bash
+pip install flask spotipy flask-cors
+```
+
+(Optional) Save the installed dependencies for future use:
+
+```bash
+pip freeze > requirements.txt
+```
+
+Start the Flask backend server:
+
+```bash
+python3 main.py
+```
 
 ---
 
-## License
+### 2. Frontend Setup
 
-This project is just for fun. Feel free to fork it, modify it, or stare blankly at it while "How to Disappear Completely" plays.
+Navigate to the frontend directory:
+
+```bash
+cd ../frontend
+```
+
+(Optional) Serve the frontend locally with Python:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then open your browser and go to:
+
+```
+http://localhost:8000
+```
+
+---
+
+### Optional: Favicon Warning Fix
+
+If you'd like to remove the missing favicon warning in the browser console, you can create a dummy icon file:
+
+```bash
+touch frontend/favicon.ico
+```
+
+---
+
+
+## 🗂️ Project Structure
+
+```
+Spotify-Playlist-Analyzer/
+├── css/
+│   └── styles.css
+├── js/
+│   └── app.js
+├── images/
+│   └── dyttw_logo3.png
+├── sounds/
+│   └── celebration.mp3
+├── index.html
+├── main.py
+```
+
+---
+
+##  Future Enhancements
+
+- Add OAuth authentication for private playlist access
+- Expand artist recognition 
+- Deploy to the web (frontend + backend)
+- Add shareable results cards or memes
+
+---
+
+##  License
+
+This project is intended for creative and educational use.  
+
+All references to artist fandoms and musical preference are lighthearted and satirical.

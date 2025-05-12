@@ -1,6 +1,6 @@
 # Spotify Playlist Analyzer
 
-**Spotify Playlist Analyzer** (also known as **“Do You Talk To Women?”**) is a full-stack web application that humorously evaluates Spotify playlists by analyzing the presence of emotionally introspective artists such as Radiohead and Weezer. While framed around inside jokes based on the two bands' communities, the app demonstrates skills in API integration, frontend design, and Flask-based backend development.
+**Spotify Playlist Analyzer** (also known as **“Do You Go Outside?”**) is a full-stack web application that humorously evaluates Spotify playlists by analyzing the presence of emotionally introspective artists such as Radiohead and Weezer. While framed around inside jokes based on the two bands' communities, the app demonstrates skills in API integration, frontend design, and Flask-based backend development.
 
 This project creatively uses music data to engage users through interactive analysis, multimedia feedback, and a responsive interface.
 
@@ -33,14 +33,14 @@ This project creatively uses music data to engage users through interactive anal
 
 ##  Installation
 
-### 1. Clone the Repository
+### 1 Clone the Repository
 
 ```bash
 git clone https://github.com/laniel123/Spotify-Playlist-Analyzer.git
 cd Spotify-Playlist-Analyzer
 ```
 
-### 2. Set Up Spotify Developer Credentials
+### 2 Set Up Spotify Developer Credentials
 
 1. Go to https://developer.spotify.com
 2. Create an application and retrieve your **Client ID** and **Client Secret**
@@ -56,7 +56,7 @@ client_secret = "YOUR_CLIENT_SECRET"
 
 To run the project locally, follow the steps below.
 
-### 1. Backend Setup
+### 1 Backend Setup
 
 Navigate to the backend directory:
 
@@ -68,12 +68,6 @@ Install the necessary dependencies:
 
 ```bash
 pip install -r requirements.txt
-```
-
-If `requirements.txt` does not exist:
-
-```bash
-pip install flask spotipy flask-cors
 ```
 
 (Optional) Save the installed dependencies for future use:
@@ -90,7 +84,7 @@ python3 main.py
 
 ---
 
-### 2. Frontend Setup
+### 2 Frontend Setup
 
 Navigate to the frontend directory:
 

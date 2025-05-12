@@ -70,12 +70,6 @@ Install the necessary dependencies:
 pip install -r requirements.txt
 ```
 
-If `requirements.txt` does not exist:
-
-```bash
-pip install flask spotipy flask-cors
-```
-
 (Optional) Save the installed dependencies for future use:
 
 ```bash

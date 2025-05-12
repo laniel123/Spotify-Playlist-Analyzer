@@ -31,7 +31,7 @@ This project creatively uses music data to engage users through interactive anal
 
 ---
 
-## 📦 Installation
+##  Installation
 
 ### 1. Clone the Repository
 
@@ -123,7 +123,7 @@ touch frontend/favicon.ico
 ---
 
 
-## 🗂️ Project Structure
+##  Project Structure
 
 ```
 Spotify-Playlist-Analyzer/
@@ -154,4 +154,4 @@ Spotify-Playlist-Analyzer/
 
 This project is intended for creative and educational use.  
 
-All references to artist fandoms and musical preference are lighthearted and satirical.
+All references to artist fandoms and musical preferences are lighthearted and satirical.

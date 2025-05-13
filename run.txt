@@ -2,7 +2,7 @@
 # for every cd copy file path 
 # 1. Backend setup
 
-cd python_api
+cd ../python_api
 
 pip install -r requirements.txt
 

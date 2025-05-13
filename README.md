@@ -6,6 +6,12 @@ This project creatively uses music data to engage users through interactive anal
 
 ---
 
+## Website Demo 
+
+[![Watch the demo](https://img.youtube.com/vi/zjIqYCqgvKw/0.jpg)](https://youtu.be/zjIqYCqgvKw)]
+
+---
+
 ## Features
 
 - Accepts public Spotify playlist URLs

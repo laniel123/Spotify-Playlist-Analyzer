@@ -139,7 +139,7 @@ touch frontend/favicon.ico
 ##  Future Enhancements
 
 - Add OAuth authentication for private playlist access
-- Better ttylized website
+- Improved CSS styles 
 - Expand artist recognition 
 - Deploy to the web (frontend + backend)
 - Add shareable results cards or memes

@@ -148,6 +148,6 @@ touch frontend/favicon.ico
 
 ##  License
 
-This project is intended for creative and educational use.  
+## 📄 License
 
-All references to artist fandoms and musical preferences are lighthearted and satirical.
+This project is licensed under the [MIT License](LICENSE.txt).

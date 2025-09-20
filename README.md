@@ -1,6 +1,6 @@
 # Spotify Playlist Analyzer
 
-**Spotify Playlist Analyzer** (also known as **“Do You Go Outside?”**) is a full-stack web application that humorously evaluates Spotify playlists by analyzing the presence of emotionally introspective artists such as Radiohead and Weezer. While framed around inside jokes based on the two bands' communities, the app demonstrates skills in API integration, frontend design, and Flask-based backend development.
+**Spotify Playlist Analyzer** (also known as **“Do You Go Outside?”**) is a full-stack web application that evaluates one's Spotify playlists by analyzing the presence of emotionally introspective artists such as Radiohead and Weezer. While framed around inside jokes based on the two bands' communities, the app demonstrates skills in API integration, frontend design, and Flask-based backend development.
 
 This project creatively uses music data to engage users through interactive analysis, multimedia feedback, and a responsive interface.
 
